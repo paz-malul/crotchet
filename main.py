@@ -31,6 +31,10 @@ async def get_items():
     with open("items/items.json", "r") as file:
         items = json.load(file)
 
+    # Only include the first image for each item
+    for item in items:
+        items[item]["images"] = items[item]["images"][items[item]["main_image_index"]]  # Keep only the first image
+
     return items
 
 
@@ -44,26 +48,3 @@ async def get_item_by_id(item_id: str):
         return items[item_id]
     else:
         raise HTTPException(status_code=404, detail="Item not found")
-
-
-@app.post('/items/{item_id}')
-async def create_item(item_id: str, request: Request):
-    for item in ITEMS:
-        if item.id == item_id:
-            raise HTTPException(status_code=404, detail="Item already exists")
-
-    # add the item to the list
-    # return success code
-    
-
-@app.put('/items/{item_id}')
-async def update_item(item_id: str, request: Request):
-    for item in ITEMS:
-        if item.id == item_id:
-            # update the item
-            # return success code
-            pass
-
-    raise HTTPException(status_code=404, detail="Existing item not found")
-
-uvicorn.run(app, host= "0.0.0.0", port=8000)

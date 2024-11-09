@@ -1,0 +1,10 @@
+0 brown
+1 white
+2 yellow
+3 black
+4 blue
+5 orange
+6 gold
+7 pink
+8 red
+9 light pink

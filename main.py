@@ -28,7 +28,7 @@ async def root():
 
 @app.get('/items/')
 async def get_items():
-    with open("items/items.json", "r") as file:
+    with open("Items/items.json", "r") as file:
         items = json.load(file)
 
     # Only include the first image for each item
@@ -40,7 +40,7 @@ async def get_items():
 
 @app.get('/items/:{item_id}')
 async def get_item_by_id(item_id: str):
-    with open("items/items.json", "r") as file:
+    with open("Items/items.json", "r") as file:
         items = json.load(file)
 
     # Check if the item with the given ID exists

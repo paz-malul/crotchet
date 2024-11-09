@@ -1,10 +1,8 @@
 import json
 
+import uvicorn
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
 
 app = FastAPI()
 
@@ -67,3 +65,5 @@ async def update_item(item_id: str, request: Request):
             pass
 
     raise HTTPException(status_code=404, detail="Existing item not found")
+
+uvicorn.run(app, host= "0.0.0.0", port=8000)
